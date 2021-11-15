@@ -136,7 +136,9 @@ commit: [TODO]
 4. Create the gentx, use `1000000000000ulum` (1Mi LUM):
 
    ```sh
-   lumd gentx <key-name> 1000000000000ulum --chain-id=lum-network-testnet-1
+   lumd gentx <key-name> 1000000000000ulum \
+       --chain-id=lum-network-testnet-1 \
+       --[other custom params]
    ```
 
    If all goes well, you will see a message similar to the following:
@@ -159,7 +161,7 @@ commit: [TODO]
 
   ```sh
   > cd testnet
-  > cp ~/.lumd/config/gentx/gentx*.json ./gentx/
+  > cp ~/.lumd/config/gentx/gentx-*****.json ./gentx/gentx-<moniker-name>.json
   ```
 
 - Commit and push to your repo
