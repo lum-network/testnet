@@ -68,8 +68,8 @@ Available here: [./seeds.txt](./seeds.txt)
 $ lumd version --long
 name: lum
 server_name: lumd
-version: 1.0.1
-commit: 98c5db3215d751112ca84ebe840de5464a08b1a6
+version: 1.0.2
+commit: e7e834f7459808f8a00973b1913c2a7df851caf3
 ```
 
 ## Installation
@@ -90,7 +90,7 @@ export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin
 ```sh
 git clone https://github.com/lum-network/chain.git
 cd chain
-git checkout v1.0.1
+git checkout v1.0.2
 make install
 ```
 
@@ -102,8 +102,8 @@ lumd version --long
 ```
 name: lum
 server_name: lumd
-version: 1.0.1
-commit: 98c5db3215d751112ca84ebe840de5464a08b1a6
+version: 1.0.2
+commit: e7e834f7459808f8a00973b1913c2a7df851caf3
 ```
 
 ### Minimum hardware requirements
