@@ -17,6 +17,8 @@ November 21st, 1:00PM UTC
 
 You must submit your gentx (see instructions below) by this time to be included in the genesis.
 
+[./config-genesis.json](./config-genesis.json) contains the genesis configuration (without any account yet). Feel free to comment on that over Discord.
+
 ### Phase 2: Testnet Genesis Launch
 November 22nd, 5:00PM UTC
 
@@ -138,6 +140,8 @@ commit: 98c5db3215d751112ca84ebe840de5464a08b1a6
    ```sh
    lumd gentx <key-name> 1000000000000ulum \
        --chain-id=lum-network-testnet-1 \
+       --moniker="<moniker>" \
+       --commission-rate="0.01" \
        --[other custom params]
    ```
 
@@ -157,11 +161,11 @@ commit: 98c5db3215d751112ca84ebe840de5464a08b1a6
   git clone https://github.com/<your-github-username>/testnet
   ```
 
-- Copy the generated gentx json file to `<repo_path>/gentx/`
+- Copy the generated gentx json file to `<repo_path>/gentxs/`
 
   ```sh
   > cd testnet
-  > cp ~/.lumd/config/gentx/gentx-*****.json ./gentx/gentx-<moniker-name>.json
+  > cp ~/.lumd/config/gentx/gentx-*****.json ./gentxs/gentx-<moniker-name>.json
   ```
 
 - Commit and push to your repo
