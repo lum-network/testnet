@@ -1,0 +1,3 @@
+scripts/airdrop/*.js
+scripts/airdrop/node_modules
+scripts/airdrop/output

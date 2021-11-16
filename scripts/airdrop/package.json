@@ -1,12 +1,18 @@
 {
-  "name": "LumNetwork",
-  "version": "1.0.0",
-  "main": "index.js",
-  "license": "MIT",
-  "devDependencies": {
-    "@types/node": "^16.11.7"
-  },
-  "dependencies": {
-    "fast-csv": "^4.3.6"
-  }
+    "name": "lum-network-airdrop-tools",
+    "version": "1.0.0",
+    "main": "index.js",
+    "license": "MIT",
+    "scripts": {
+        "parse_atom": "tsc parse_atom.ts --esModuleInterop && node parse_atom.js",
+        "parse_osmo": "tsc parse_osmo.ts --esModuleInterop && node parse_osmo.js"
+    },
+    "devDependencies": {
+        "@types/node": "^16.11.7"
+    },
+    "dependencies": {
+        "@lum-network/sdk-javascript": "^0.7.0",
+        "fast-csv": "^4.3.6",
+        "typescript": "^4.4.4"
+    }
 }

@@ -1,24 +1,28 @@
 import * as fs from 'fs';
 import * as csv from 'fast-csv';
+import { LumConstants, LumUtils } from '@lum-network/sdk-javascript';
 
 // Make sure we have the required destination folder
-if(!fs.existsSync('osmo')){
-    fs.mkdirSync('osmo');
+if (!fs.existsSync('output')) {
+    fs.mkdirSync('output');
 }
 
 // Create the CSV stream
 const csvStream = csv.format({ headers: true });
-csvStream.pipe(fs.createWriteStream('osmo/out.csv')).on('end', () => process.exit());
+csvStream.pipe(fs.createWriteStream('output/osmo_output.csv')).on('end', () => process.exit());
 
 class Entry {
-    address: string;
-    lp: boolean;
-    lockedLp: boolean;
+    osmo_addr: string;
+    lum_addr: string;
+    uosmo: number;
+    ulum: number;
 
-    constructor(addr: string, shares: number, addresses: string[], lp: boolean, lockedLp: boolean) {
-        this.address = addr;
-        this.lp = lp;
-        this.lockedLp = lockedLp;
+    constructor(cosmos_addr: string) {
+        const bech = LumUtils.Bech32.decode(cosmos_addr);
+        this.osmo_addr = cosmos_addr;
+        this.lum_addr = LumUtils.Bech32.encode(LumConstants.LumBech32PrefixAccAddr, bech.data);
+        this.uosmo = 0;
+        this.ulum = 0;
     }
 }
 
@@ -26,84 +30,144 @@ interface Entries {
     [key: string]: Entry;
 }
 
-const main = () => {
-    //@ts-ignore
-    const entries: Entries = [];
+class Pool {
+    id: string;
+    total_shares: number;
+    total_weight: number;
+    uosmo_weight: number;
+    uosmo_ratio: number;
+    uosmo_amount: number;
+    uosmo_per_share: number;
 
-    // Adresses to exclude (Binance, Coinbase, Kraken)
-    const excludedAddresses = [];
+    constructor(id: string, total_shares: number, total_weight: number, uosmo_weight: number, uosmo_amount: number) {
+        this.id = id;
+        this.total_shares = total_shares;
+        this.total_weight = total_weight;
+        this.uosmo_weight = uosmo_weight;
+        this.uosmo_amount = uosmo_amount;
+        this.uosmo_ratio = uosmo_weight / total_weight;
+        this.uosmo_per_share = uosmo_amount / total_shares;
+    }
+}
+
+interface Pools {
+    [key: string]: Pool;
+}
+
+const main = () => {
+    const entries: Entries = {};
+    const pools: Pools = {};
+
+    // Available stakedrop ulum
+    const ulumAvailable = 250000000000000;
+    // Minimum uosmo cap (30 OSMO)
+    const uosmoMinCap = 30000000;
+    // Maximum uosmo cap (20,000 OSMO)
+    const uosmoMaxCap = 20000000000;
+
+    console.log('Loading osmo export...');
+
     const rawData = fs.readFileSync('osmo/export.json');
     const data = JSON.parse(rawData.toString());
 
-    let processedLp = 0;
-    let processedLockedLp = 0;
+    console.log('Osmo export loaded with success');
 
-    // LP Token holders
-    for (const line of data['app_state']['bank']['balances']){
-        let lp = false;
+    let lpCount = 0;
+    let uosmoTotal = 0;
 
-        for (const coin of line['coins']){
-            if(String(coin['denom']).startsWith('gamm')){
-                lp = true;
+    console.log('Parsing osmo export...');
+
+    for (const info of data['app_state']['gamm']['pools']) {
+        let uosmoWeight = 0;
+        let uosmoAmount = 0;
+        for (const asset of info.poolAssets) {
+            if (asset.token.denom === 'uosmo') {
+                uosmoWeight = asset.weight;
+                uosmoAmount = asset.token.amount;
+                break;
             }
         }
-
-        // If not liquidity provider, continue to the next one
-        if(!lp){
-            continue;
-        }
-
-        // Only make sure we have it only one time
-        if (entries[line['address']] === undefined) {
-            entries[line['address']] = new Entry(
-                line['address'],
-                0,
-                null,
-                true,
-                false
+        if (uosmoAmount > 0) {
+            pools[info.totalShares.denom] = new Pool(
+                info.id,
+                parseInt(info.totalShares.amount, 10),
+                parseInt(info.totalWeight, 10),
+                uosmoWeight,
+                uosmoAmount
             );
-            processedLp++;
         }
     }
 
     // Locked LP token holders
-    for (const line of data['app_state']['lockup']['locks']){
-        const addr = line.owner;
-
-        let lp = false;
-        for (const coin of line['coins']){
-            if(String(coin['denom']).startsWith('gamm')){
-                lp = true;
+    for (const line of data['app_state']['lockup']['locks']) {
+        let uosmo = 0;
+        for (const coin of line['coins']) {
+            const pool = pools[coin['denom']];
+            if (pool) {
+                uosmo += parseInt(coin['amount'], 10) * pool.uosmo_per_share;
             }
         }
 
-        if(!lp){
+        // Ignore if no uosmo
+        if (uosmo <= 0) {
             continue;
         }
 
-        if (entries[addr] === undefined){
-            entries[addr] = new Entry(
-                addr,
-                0,
-                null,
-                false, 
-                true
-            );
-        } else {
-            entries[addr].lockedLp = true;
+        if (entries[line['owner']] === undefined) {
+            entries[line['owner']] = new Entry(line['owner']);
+            lpCount++;
         }
-        processedLockedLp++;
+        entries[line['owner']].uosmo += uosmo;
+        uosmoTotal += uosmo;
     }
 
-    console.log(`Processed ${processedLp} LP / ${processedLockedLp} locked LP`);
-    for(const entry in entries){
+    console.log('Osmo export parsed with success:');
+    console.log(`- ${lpCount} addresses found for a total of ${uosmoTotal} uosmo locked in the liquidity pools`);
+
+    console.log('Computing ulum from uosmo...');
+    // Iterate a first time to remove addresses below min cap and compute ratio
+    let uosmoCapped = 0;
+    for (const entry in entries) {
+        if (entries[entry].uosmo < uosmoMinCap) {
+            delete entries[entry];
+        } else {
+            uosmoCapped += Math.min(entries[entry].uosmo, uosmoMaxCap);
+        }
+    }
+    const ratio = ulumAvailable / uosmoCapped;
+    let ulumDropped = 0;
+    for (const entry in entries) {
+        entries[entry].uosmo = Math.floor(entries[entry].uosmo);
+        entries[entry].ulum = Math.floor(Math.min(entries[entry].uosmo, uosmoMaxCap) * ratio);
+        ulumDropped += entries[entry].ulum;
+    }
+
+    console.log('ulum computation done:');
+    console.log(`- ratio: ${ratio}`);
+    console.log(`- addresses: ${Object.keys(entries).length}`);
+    console.log(`- ulum dropped: ${ulumDropped}`);
+    console.log(`- ulum remaining dust: ${ulumAvailable - ulumDropped}`);
+
+    console.log(
+        `Giving remaining ${
+            ulumAvailable - ulumDropped
+        } ulum dust to osmo1t8qckan2yrygq7kl9apwhzfalwzgc242lk02ch (because why not...)`
+    );
+    entries['osmo1qqtywra8ar6uea24426rr2wrn9gh93knh3mh0h'].ulum += ulumAvailable - ulumDropped;
+
+    console.log('Writing output...');
+
+    for (const entry in entries) {
         csvStream.write({
-            address: entries[entry].address, 
-            liquidity_provider: entries[entry].lp, 
-            locked_liquidity_provider: entries[entry].lockedLp
+            cosmos_addr: entries[entry].osmo_addr,
+            ulum_addr: entries[entry].lum_addr,
+            uosmo: entries[entry].uosmo,
+            ulum: entries[entry].ulum,
         });
     }
     csvStream.end();
+
+    console.log('Output written with success, exiting');
 };
 
 main();
