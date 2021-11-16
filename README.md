@@ -64,10 +64,10 @@ Available here: [./seeds.txt](./seeds.txt)
 
 ```sh
 $ lumd version --long
-name: [TODO]
-server_name: [TODO]
-version: v1.0.0
-commit: [TODO]
+name: lum
+server_name: lumd
+version: 1.0.1
+commit: 98c5db3215d751112ca84ebe840de5464a08b1a6
 ```
 
 ## Installation
@@ -88,7 +88,7 @@ export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin
 ```sh
 git clone https://github.com/lum-network/chain.git
 cd chain
-git checkout v1.0.0
+git checkout v1.0.1
 make install
 ```
 
@@ -98,10 +98,10 @@ make install
 lumd version --long
 ```
 ```
-name: [TODO]
-server_name: [TODO]
-version: v1.0.0
-commit: [TODO]
+name: lum
+server_name: lumd
+version: 1.0.1
+commit: 98c5db3215d751112ca84ebe840de5464a08b1a6
 ```
 
 ### Minimum hardware requirements
@@ -187,6 +187,7 @@ sudo nano /etc/systemd/system/lumd.service
 Copy and paste the following and update `<YOUR_HOME_PATH>`:
 
 ```sh
+[Unit]
 Description=Lum Network daemon
 After=network-online.target
 
