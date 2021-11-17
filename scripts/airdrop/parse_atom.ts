@@ -33,11 +33,11 @@ interface Entries {
 const main = () => {
     const entries: Entries = {};
     // Available stakedrop ulum
-    const ulumAvailable = 250000000000000;
+    const ulumAvailable = 250_000_000_000_000;
     // Minimum uatom cap (5 ATOM)
-    const uatomMinCap = 5000000;
+    const uatomMinCap = 5_000_000;
     // Maximum uatom cap (3000 ATOM)
-    const uatomMaxCap = 3000000000;
+    const uatomMaxCap = 3_000_000_000;
 
     // Centralized validators to exclude
     const excludedValidators = [
@@ -141,7 +141,11 @@ const main = () => {
     console.log(`- ulum dropped: ${ulumDropped}`);
     console.log(`- ulum remaining dust: ${ulumAvailable - ulumDropped}`);
 
-    console.log(`Giving remaining ${ulumAvailable - ulumDropped} ulum dust to cosmos1k2d9ed9vgfuk2m58a2d80q9u6qljkh4vvf589n (because why not...)`)
+    console.log(
+        `Giving remaining ${
+            ulumAvailable - ulumDropped
+        } ulum dust to cosmos1k2d9ed9vgfuk2m58a2d80q9u6qljkh4vvf589n (because why not...)`
+    );
     entries['cosmos1k2d9ed9vgfuk2m58a2d80q9u6qljkh4vvf589n'].ulum += ulumAvailable - ulumDropped;
 
     console.log('Writing output...');

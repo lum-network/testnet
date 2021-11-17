@@ -59,11 +59,11 @@ const main = () => {
     const pools: Pools = {};
 
     // Available stakedrop ulum
-    const ulumAvailable = 250000000000000;
+    const ulumAvailable = 250_000_000_000_000;
     // Minimum uosmo cap (30 OSMO)
-    const uosmoMinCap = 30000000;
+    const uosmoMinCap = 30_000_000;
     // Maximum uosmo cap (20,000 OSMO)
-    const uosmoMaxCap = 20000000000;
+    const uosmoMaxCap = 20_000_000_000;
 
     console.log('Loading osmo export...');
 
