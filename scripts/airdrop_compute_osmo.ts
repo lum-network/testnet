@@ -3,13 +3,13 @@ import * as csv from 'fast-csv';
 import { LumConstants, LumUtils } from '@lum-network/sdk-javascript';
 
 // Make sure we have the required destination folder
-if (!fs.existsSync('output')) {
-    fs.mkdirSync('output');
+if (!fs.existsSync('tmp')) {
+    fs.mkdirSync('tmp');
 }
 
 // Create the CSV stream
 const csvStream = csv.format({ headers: true });
-csvStream.pipe(fs.createWriteStream('output/osmo_output.csv')).on('end', () => process.exit());
+csvStream.pipe(fs.createWriteStream('tmp/airdrop_osmo.csv')).on('end', () => process.exit());
 
 class Entry {
     osmo_addr: string;
@@ -67,7 +67,7 @@ const main = () => {
 
     console.log('Loading osmo export...');
 
-    const rawData = fs.readFileSync('osmo/export.json');
+    const rawData = fs.readFileSync('snapshots/osmo_export.json');
     const data = JSON.parse(rawData.toString());
 
     console.log('Osmo export loaded with success');
@@ -160,7 +160,7 @@ const main = () => {
     for (const entry in entries) {
         csvStream.write({
             cosmos_addr: entries[entry].osmo_addr,
-            ulum_addr: entries[entry].lum_addr,
+            lum_addr: entries[entry].lum_addr,
             uosmo: entries[entry].uosmo,
             ulum: entries[entry].ulum,
         });

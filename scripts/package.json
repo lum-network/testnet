@@ -4,8 +4,8 @@
     "main": "index.js",
     "license": "MIT",
     "scripts": {
-        "parse_atom": "tsc parse_atom.ts --esModuleInterop && node parse_atom.js",
-        "parse_osmo": "tsc parse_osmo.ts --esModuleInterop && node parse_osmo.js"
+        "airdrop_compute_atom": "tsc airdrop_compute_atom.ts --esModuleInterop && node airdrop_compute_atom.js",
+        "airdrop_compute_osmo": "tsc airdrop_compute_osmo.ts --esModuleInterop && node airdrop_compute_osmo.js"
     },
     "devDependencies": {
         "@types/node": "^16.11.7"

@@ -3,13 +3,13 @@ import * as csv from 'fast-csv';
 import { LumConstants, LumUtils } from '@lum-network/sdk-javascript';
 
 // Make sure we have the required destination folder
-if (!fs.existsSync('output')) {
-    fs.mkdirSync('output');
+if (!fs.existsSync('tmp')) {
+    fs.mkdirSync('tmp');
 }
 
 // Create the CSV stream
 const csvStream = csv.format({ headers: true });
-csvStream.pipe(fs.createWriteStream('output/atom_output.csv')).on('end', () => process.exit());
+csvStream.pipe(fs.createWriteStream('tmp/airdrop_atom.csv')).on('end', () => process.exit());
 
 class Entry {
     cosmos_addr: string;
@@ -72,7 +72,7 @@ const main = () => {
 
     console.log('Loading atom export...');
 
-    const rawData = fs.readFileSync('atom/export.json');
+    const rawData = fs.readFileSync('snapshots/atom_export.json');
     const data = JSON.parse(rawData.toString());
 
     console.log('Atom export loaded with success');
@@ -153,7 +153,7 @@ const main = () => {
     for (const entry in entries) {
         csvStream.write({
             cosmos_addr: entries[entry].cosmos_addr,
-            ulum_addr: entries[entry].lum_addr,
+            lum_addr: entries[entry].lum_addr,
             uatom: entries[entry].uatom,
             ulum: entries[entry].ulum,
         });
