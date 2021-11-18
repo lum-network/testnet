@@ -46,10 +46,10 @@ lum-network-testnet-1
 ```
 
 ### Genesis file
-Available in this repository: [./genesis.json](./genesis.json)
+Available in this repository: [./config-genesis.json](./genesis.json)
 
 ```sh
-curl -s  https://raw.githubusercontent.com/lum-network/testnet/master/genesis.json > ~/.lumd/config/genesis.json
+curl -s  https://raw.githubusercontent.com/lum-network/testnet/master/config-genesis.json > ~/.lumd/config/genesis.json
 
 sha256sum ~/.lumd/config/genesis.json
 [TODO/UPCOMING]
