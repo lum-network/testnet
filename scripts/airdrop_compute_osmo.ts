@@ -159,7 +159,7 @@ const main = () => {
 
     for (const entry in entries) {
         csvStream.write({
-            cosmos_addr: entries[entry].osmo_addr,
+            osmo_addr: entries[entry].osmo_addr,
             lum_addr: entries[entry].lum_addr,
             uosmo: entries[entry].uosmo,
             ulum: entries[entry].ulum,
