@@ -22,14 +22,22 @@ yarn airdrop_compute_osmo
 ```
 
 ## Genesis file generation
-### Generate pre-genesis file
 
 Compute the airdrops output first
 ```sh
 yarn airdrop_compute_atom && yarn airdrop_compute_osmo
 ```
 
+### Generate pre-genesis.json file
+
 Output will be written in `tmp/pre-genesis.json`
 ```sh
 yarn generate_pregenesis
+```
+
+### Generate genesis.json file
+
+Output will be written in `tmp/pre-genesis.json`
+```sh
+yarn generate_genesis
 ```
