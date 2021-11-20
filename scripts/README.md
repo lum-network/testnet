@@ -10,13 +10,26 @@ yarn install
 ## Airdrop computation
 
 ### Compute ATOM Liquidity Providers Airdrop
-Output will be written in `output/airdrop_atom.csv`
+Output will be written in `tmp/airdrop_atom.csv`
 ```sh
 yarn airdrop_compute_atom
 ```
 
 ### Compute OSMO Liquidity Providers Airdrop
-Output will be written in `output/airdrop_osmo.csv`
+Output will be written in `tmp/airdrop_osmo.csv`
 ```sh
 yarn airdrop_compute_osmo
+```
+
+## Genesis file generation
+### Generate pre-genesis file
+
+Compute the airdrops output first
+```sh
+yarn airdrop_compute_atom && yarn airdrop_compute_osmo
+```
+
+Output will be written in `tmp/pre-genesis.json`
+```sh
+yarn generate_pregenesis
 ```
