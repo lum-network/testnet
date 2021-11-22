@@ -156,7 +156,7 @@ const generatePregenesis = (wallets: Wallets, genesisConfigFilepath: string, pre
     genesis.app_state.bank.supply = [];
 
     // Add claim records
-    genesis.app_state.claim = {
+    genesis.app_state.airdrop = {
         module_account_balance: {
             denom: 'ulum',
             amount: `${500_000_000_000_000}`,
@@ -222,7 +222,7 @@ const generatePregenesis = (wallets: Wallets, genesisConfigFilepath: string, pre
 
         // Add account claim actions
         if (w.ulum_claim_free > 0 || w.ulum_claim_vested > 0) {
-            genesis.app_state.claim.claim_records.push({
+            genesis.app_state.airdrop.claim_records.push({
                 address: w.address,
                 initial_claimable_amount: [
                     {
