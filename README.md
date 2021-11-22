@@ -90,7 +90,7 @@ export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin
 ```sh
 git clone https://github.com/lum-network/chain.git
 cd chain
-git checkout v1.0.2
+git checkout v1.0.3
 make install
 ```
 
