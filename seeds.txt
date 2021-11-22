@@ -1,1 +1,1 @@
-14cd04fc05d8749cb58407b9fc131479c4ea83e6@peer-0.testnet.lum.network:26656,e912ead9efc0091ef53737118e21ab0bc1248526@peer-1.testnet.lum.network:26656
+e912ead9efc0091ef53737118e21ab0bc1248526@peer-1.testnet.lum.network:26656
