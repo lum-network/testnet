@@ -52,7 +52,7 @@ Available in this repository: [./genesis.json](./genesis.json)
 curl -s  https://raw.githubusercontent.com/lum-network/testnet/master/genesis.json > ~/.lumd/config/genesis.json
 
 sha256sum ~/.lumd/config/genesis.json
-2e300fd09a0d0df53b4e161a2c171a6ec1098014c2af83ece2a9d3a92a1af254
+3447c815eb099b67112b4280dcd4fcfa5e2026bad369428fd9cafbee39303fa9
 ```
 
 ### Seed nodes
@@ -68,8 +68,8 @@ Available here: [./seeds.txt](./seeds.txt)
 $ lumd version --long
 name: lum
 server_name: lumd
-version: 1.0.2
-commit: e7e834f7459808f8a00973b1913c2a7df851caf3
+version: 1.0.3
+commit: 71d86f5f9583893c39ffa910471dc4f5a381d530
 ```
 
 ## Installation
@@ -102,8 +102,8 @@ lumd version --long
 ```
 name: lum
 server_name: lumd
-version: 1.0.2
-commit: e7e834f7459808f8a00973b1913c2a7df851caf3
+version: 1.0.3
+commit: 71d86f5f9583893c39ffa910471dc4f5a381d530
 ```
 
 ### Minimum hardware requirements
@@ -179,7 +179,7 @@ Download Genesis file when the time is right.
 curl -s  https://raw.githubusercontent.com/lum-network/testnet/master/genesis.json > ~/.lumd/config/genesis.json
 
 sha256sum ~/.lumd/config/genesis.json
-2e300fd09a0d0df53b4e161a2c171a6ec1098014c2af83ece2a9d3a92a1af254
+3447c815eb099b67112b4280dcd4fcfa5e2026bad369428fd9cafbee39303fa9
 ```
 
 Create a systemd file for your Lum Network service:

@@ -47,7 +47,13 @@
             ],
             "denom_metadata": []
         },
-        "beam": {},
+        "beam": {
+            "module_account_balance": {
+                "denom": "ulum",
+                "amount": "0"
+            },
+            "beams": []
+        },
         "capability": {
             "index": "1",
             "owners": []
