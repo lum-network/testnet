@@ -189,12 +189,10 @@ const generateGenesis = (wallets: Wallets, genesisConfigFilepath: string, genesi
             amount: `${500_000_000_000_000}`,
         },
         params: {
-            airdrop_enabled: false,
             airdrop_start_time: `${genesis.genesis_time}`,
             duration_until_decay: '15638400s',
             duration_of_decay: '1s',
             claim_denom: 'ulum',
-            allowed_claimers: [],
         },
         claim_records: [],
     };

@@ -1,5 +1,5 @@
 {
-    "genesis_time": "2021-11-22T17:20:00.000000Z",
+    "genesis_time": "2021-11-22T17:40:00.000000Z",
     "chain_id": "lum-network-testnet-1",
     "initial_height": "1",
     "consensus_params": {
