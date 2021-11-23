@@ -20,12 +20,12 @@ You must submit your gentx (see instructions below) by this time to be included 
 [./config-genesis.json](./config-genesis.json) contains the genesis configuration (without any account yet). Feel free to comment on that over Discord.
 
 ### Phase 2: Testnet Genesis Launch
-November 22nd, 5:00PM UTC
+November 23nd, 4:00PM UTC
 
 You must have your validator up and running by this time and be available for further instructions if necessary.
 
 ### Phase 3: Tests period
-*From November 22nd, 5:00PM UTC - Until December 6th, 1:00PM UTC*
+*From November 23nd, 4:00PM UTC - Until December 6th, 1:00PM UTC*
 
 During this phase everyone's invited to test the network.
 
@@ -52,21 +52,19 @@ Available in this repository: [./genesis.json](./genesis.json)
 curl -s  https://raw.githubusercontent.com/lum-network/testnet/master/genesis.json > ~/.lumd/config/genesis.json
 
 sha256sum ~/.lumd/config/genesis.json
-7045c675a6b5b4aee2ceeeeb23ef65285352b48b731f1df99d7e0e983d92831e
+593f0bee0091f389b87dca7aa5d1cdf0af91774593e49bb9189d4eab6c815f77
 ```
 
 ### Seed nodes
 Available here: [./seeds.txt](./seeds.txt)
 
 ```
-e912ead9efc0091ef53737118e21ab0bc1248526@peer-1.testnet.lum.network:26656
 ```
 
 ### Persistent peers
 Available here: [./persistent_peers.txt](./persistent_peers.txt)
 
 ```
-14cd04fc05d8749cb58407b9fc131479c4ea83e6@peer-0.testnet.lum.network:26656,70e7ad0a510fa6d154d4d68c8d36a1410f9582e2@139.59.148.118:26656,be0eb46e35a3999c92040a27e5cefbe04f6b0a08@54.211.117.92:26656,ce7978182b14042ec5909864b9b075cceb1c3bb8@173.249.40.87:26656,5e77fb44c9ffe833ff571c06629956bb23b723ba@173.249.40.6:26656
 ```
 
 ### lumd version
@@ -186,7 +184,7 @@ Download Genesis file when the time is right.
 curl -s  https://raw.githubusercontent.com/lum-network/testnet/master/genesis.json > ~/.lumd/config/genesis.json
 
 sha256sum ~/.lumd/config/genesis.json
-7045c675a6b5b4aee2ceeeeb23ef65285352b48b731f1df99d7e0e983d92831e
+593f0bee0091f389b87dca7aa5d1cdf0af91774593e49bb9189d4eab6c815f77
 ```
 
 Create a systemd file for your Lum Network service:
