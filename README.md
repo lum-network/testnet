@@ -59,12 +59,14 @@ sha256sum ~/.lumd/config/genesis.json
 Available here: [./seeds.txt](./seeds.txt)
 
 ```
+2876429a72dd112275a983141dce78ebe820de2a@peer-1.testnet.lum.network:26656
 ```
 
 ### Persistent peers
 Available here: [./persistent_peers.txt](./persistent_peers.txt)
 
 ```
+c8d11fffad6aa4fdc8f63e4a6c9a9e482e01c852@peer-0.testnet.lum.network:26656,a00a3f79fcf03e960dca754363604afbd653cf3c@138.68.68.210:26656,be0eb46e35a3999c92040a27e5cefbe04f6b0a08@54.173.190.78:26656
 ```
 
 ### lumd version
