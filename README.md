@@ -52,7 +52,7 @@ Available in this repository: [./genesis.json](./genesis.json)
 curl -s  https://raw.githubusercontent.com/lum-network/testnet/master/genesis.json > ~/.lumd/config/genesis.json
 
 sha256sum ~/.lumd/config/genesis.json
-593f0bee0091f389b87dca7aa5d1cdf0af91774593e49bb9189d4eab6c815f77
+32e7ff02671b9935d15e083c3086364dc4ef0ad35ea8abfdb064019152922160
 ```
 
 ### Seed nodes
@@ -184,7 +184,7 @@ Download Genesis file when the time is right.
 curl -s  https://raw.githubusercontent.com/lum-network/testnet/master/genesis.json > ~/.lumd/config/genesis.json
 
 sha256sum ~/.lumd/config/genesis.json
-593f0bee0091f389b87dca7aa5d1cdf0af91774593e49bb9189d4eab6c815f77
+32e7ff02671b9935d15e083c3086364dc4ef0ad35ea8abfdb064019152922160
 ```
 
 Create a systemd file for your Lum Network service:
