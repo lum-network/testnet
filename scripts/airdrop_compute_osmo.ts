@@ -74,9 +74,11 @@ const main = () => {
 
     let lpCount = 0;
     let uosmoTotal = 0;
+    const rejectedPools = [];
 
     console.log('Parsing osmo export...');
 
+    // Create a osmo pool map
     for (const info of data['app_state']['gamm']['pools']) {
         let uosmoWeight = 0;
         let uosmoAmount = 0;
@@ -95,8 +97,14 @@ const main = () => {
                 uosmoWeight,
                 uosmoAmount
             );
+        } else {
+            rejectedPools.push(info.id);
         }
     }
+
+    console.log('Osmo pools loaded with success:');
+    console.log(`- ${Object.keys(pools).length} accepted pools`);
+    console.log(`- ${rejectedPools.length} rejected pools`);
 
     // Locked LP token holders
     for (const line of data['app_state']['lockup']['locks']) {
