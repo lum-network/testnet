@@ -20,12 +20,12 @@ You must submit your gentx (see instructions below) by this time to be included 
 [./config-genesis.json](./config-genesis.json) contains the genesis configuration (without any account yet). Feel free to comment on that over Discord.
 
 ### Phase 2: Testnet Genesis Launch
-November 23nd, 4:00PM UTC
+November 23rd, 4:00PM UTC
 
 You must have your validator up and running by this time and be available for further instructions if necessary.
 
 ### Phase 3: Tests period
-*From November 23nd, 4:00PM UTC - Until December 6th, 1:00PM UTC*
+*From November 23rd, 4:00PM UTC - Until December 6th, 1:00PM UTC*
 
 During this phase everyone's invited to test the network.
 
