@@ -25,7 +25,7 @@ November 23rd, 4:00PM UTC
 You must have your validator up and running by this time and be available for further instructions if necessary.
 
 ### Phase 3: Tests period
-*From November 23rd, 4:00PM UTC - Until December 6th, 1:00PM UTC*
+*From November 23rd, 4:00PM UTC - Until December 10th, 1:00PM UTC*
 
 During this phase everyone's invited to test the network.
 
@@ -34,7 +34,7 @@ We will run a variety of tests to ensure the final validator set selected for th
 Do not hesitate to report any kind of issues on Discord as it is one of the goals of this phase.
 
 ### Phase 4: Results
-*December 6th, 1:00PM UTC*
+*December 10th, 1:00PM UTC*
 
 Announcement of the validators that passed the testnet phase with success. We definitely expect all validators invited to the private testnet to easily pass the test phase since only experienced validators have been invited.
 
