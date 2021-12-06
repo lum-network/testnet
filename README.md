@@ -75,8 +75,8 @@ c8d11fffad6aa4fdc8f63e4a6c9a9e482e01c852@peer-0.testnet.lum.network:26656,a00a3f
 $ lumd version --long
 name: lum
 server_name: lumd
-version: 1.0.3
-commit: 71d86f5f9583893c39ffa910471dc4f5a381d530
+version: 1.0.4
+commit: e3068181b029af45bcbbe4678804b776eef6087b
 ```
 
 ## Installation
@@ -97,7 +97,7 @@ export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin
 ```sh
 git clone https://github.com/lum-network/chain.git
 cd chain
-git checkout v1.0.3
+git checkout v1.0.4
 make install
 ```
 
@@ -109,8 +109,8 @@ lumd version --long
 ```
 name: lum
 server_name: lumd
-version: 1.0.3
-commit: 71d86f5f9583893c39ffa910471dc4f5a381d530
+version: 1.0.4
+commit: e3068181b029af45bcbbe4678804b776eef6087b
 ```
 
 ### Minimum hardware requirements
