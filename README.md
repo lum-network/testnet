@@ -1,5 +1,19 @@
 # Lum Network - Private testnet
 
+## ⚠️ Deprecated repository ⚠️
+
+This repository was only useful during the private testnet phase of the Lum Network. 
+
+We invite all validators from the testnet program to shutdown their testnet nodes.
+
+- Checkout the [main-net repository](https://github.com/lum-network/mainnet)
+- Visit the [official documentation](https://docs.lum.network/)
+- Join us on [Discord](https://discord.gg/KwyVvnBcXF)
+
+___
+
+## Information
+
 You already know the drill, but you'll find all the informations here!
 
 ## Private testnet program
